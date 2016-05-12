@@ -1,0 +1,30 @@
+{
+  "target-url": "http://rstudio:8787",
+  "bind-address": "0.0.0.0",
+  "http-port": "8080",
+  "applications": [
+    {
+      "base-path": "/",
+      "adapter-config": {
+        "realm": "test",
+        "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAiK5Z3HnLXAit6U43FUS/p1pte+9GejWU1NVjJBnY80+5JYt2OxD1eu1aiM2EvIbrqu9sLSfi41VssI4+t5+D2YQSeO8Q9zKLxvLspgY8uIfzJ2Q6u4NeafDgjCKTOq6rkP7sl/wp5LEPkCNgXq9ryLJyGAUoh3TSbV74+Rf8OxdyzuliM2AW+5Uc0MCrIqYDcILfZVtR0pzCOSj3zMiKp2Rb7czS2Q3RSde9H7fFvdDqoAyACQGxTn928Rvq7ITeYRYTupZbNpKwjo1utQfYw8wm9XZRMZONrkm45NQYT9MhJj0VeW4na4Q6XEStZkw1ZQwYImin/vhwzxFULpawGQIDAQAB",
+        "auth-server-url": "https://auth.ohmage.org/auth",
+        "ssl-required": "external",
+        "resource": "rstudio",
+        "credentials": {
+          "secret": "846a25cb-489b-4e07-af49-2ae3c87af424"
+        }
+      },
+      "constraints": [
+        {
+          "pattern": "/*",
+          "authenticate": true
+        }
+      ],
+      "proxy-address-forwarding": true
+    }
+  ],
+  "header-names": {
+    "keycloak-username": "X-RStudio-Username"
+  }
+}

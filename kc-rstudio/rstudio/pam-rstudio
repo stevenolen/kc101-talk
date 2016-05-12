@@ -1,0 +1,17 @@
+#
+# /etc/pam.d/rstudio - specify the PAM rstudio (proxy auth) behavior
+#
+
+# automatically authenticate any user over uid 1000. 
+
+auth    required        pam_exec.so seteuid /usr/local/bin/pam_add_user.sh
+auth    sufficient      pam_rootok.so
+auth    requisite       pam_succeed_if.so uid >= 1000 quiet
+auth    required        pam_permit.so
+
+session [default=1]     pam_permit.so
+session requisite       pam_deny.so
+session required        pam_permit.so
+session required        pam_exec.so seteuid /usr/local/bin/pam_add_user.sh
+session required        pam_unix.so
+session required        pam_mkhomedir.so skel=/etc/skel/ umask=0022
