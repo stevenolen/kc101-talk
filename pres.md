@@ -32,9 +32,8 @@ progress: true
   * openid-connect
   * JWT
   * SAML 2.0
-  * Kerberos
-* One integration point, regardless of identity source (and adapters available!)
 * Pluggable, themeable, easy to administrate.
+* **The real mvp**: one integration point, regardless of identity source
 
 --
 
@@ -51,8 +50,7 @@ progress: true
 --
 
 ### Integration Option: WAR/JBoss/Tomcat Adapter
-  * role-based security embedded right in to the java web app context.
-
+  * role-based security embedded in the java web app context.
 ```xml
   <security-constraint>
       <web-resource-collection>
@@ -64,7 +62,7 @@ progress: true
       </auth-constraint>
   </security-constraint>
 ```
-> "I didn't do this, because our java app uses no standards. no standards at all!" -- me
+  * "I didn't do this, because our java app uses no standards. no standards at all!" -- me
 
 --
 
@@ -72,7 +70,6 @@ progress: true
 
   * javascript library which handles authentication/redirects/refresh tokens
   * loads of helpful callbacks for listening, core maintained.
-
 ```js
   var keycloak = Keycloak();
   keycloak.init().success(function(authenticated) {
@@ -110,4 +107,14 @@ progress: true
   * Now we're scraping the bottom of the barrel.
   * If you *really*, *really* can't integrate your app, you can use their security proxy.
   * Injects customizable headers and offers a URL permit/deny patterns.
-  * Example: Would you even guess it? I did this to RStudio(r)!
+  * Example: Would you even guess it? I did this to the RStudio(r) IDE!
+
+--
+
+### You can finally stop listening to me!
+
+  * Anything you'd like to hear more about?
+    * Bolting keycloak to a legacy java app?
+    * Why is this a good idea for self-host OSS?
+    * The horribleness of that PAM hack.
+  * Questions?

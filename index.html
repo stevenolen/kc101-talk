@@ -390,11 +390,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>openid-connect</li>
 <li>JWT</li>
 <li>SAML 2.0</li>
-<li>Kerberos</li>
 </ul>
 </li>
-<li>One integration point, regardless of identity source (and adapters available!)</li>
 <li>Pluggable, themeable, easy to administrate.</li>
+<li><strong>The real mvp</strong>: one integration point, regardless of identity source</li>
 </ul>
 </section>
   </div>
@@ -417,36 +416,34 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <div class="slide hidden" id="slide-5">
     <section class="slide-content"><h3 id="integration-option-war-jboss-tomcat-adapter">Integration Option: WAR/JBoss/Tomcat Adapter</h3>
 <ul>
-<li>role-based security embedded right in to the java web app context.</li>
+<li>role-based security embedded in the java web app context.<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">security-constraint</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">web-resource-collection</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">web-resource-name</span>&gt;</span>Customers<span class="hljs-tag">&lt;/<span class="hljs-name">web-resource-name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">web-resource-collection</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">auth-constraint</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">role-name</span>&gt;</span>user<span class="hljs-tag">&lt;/<span class="hljs-name">role-name</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">auth-constraint</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">security-constraint</span>&gt;</span></code></pre>
+</li>
+<li>&quot;I didn&#39;t do this, because our java app uses no standards. no standards at all!&quot; -- me</li>
 </ul>
-<pre><code class="lang-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">security-constraint</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">web-resource-collection</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">web-resource-name</span>&gt;</span>Customers<span class="hljs-tag">&lt;/<span class="hljs-name">web-resource-name</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/*<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">web-resource-collection</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">auth-constraint</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-name">role-name</span>&gt;</span>user<span class="hljs-tag">&lt;/<span class="hljs-name">role-name</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">auth-constraint</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-name">security-constraint</span>&gt;</span></code></pre>
-<blockquote>
-<p>&quot;I didn&#39;t do this, because our java app uses no standards. no standards at all!&quot; -- me</p>
-</blockquote>
 </section>
   </div>
   <div class="slide hidden" id="slide-6">
     <section class="slide-content"><h3 id="integration-option-keycloak-js-">Integration Option: <code>keycloak.js</code></h3>
 <ul>
 <li>javascript library which handles authentication/redirects/refresh tokens</li>
-<li>loads of helpful callbacks for listening, core maintained.</li>
-</ul>
-<pre><code class="lang-js">  <span class="hljs-keyword">var</span> keycloak = Keycloak();
-  keycloak.init().success(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">authenticated</span>) </span>{
-      alert(authenticated ? <span class="hljs-string">'authenticated'</span> : <span class="hljs-string">'not authenticated'</span>);
-  }).error(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      alert(<span class="hljs-string">'failed to initialize'</span>);
-  });</code></pre>
-<ul>
-<li>Example: it practically is <a href="https://github.com/mobilizingcs/navbar/blob/master/views/login.js#L116">this simple</a>.</li>
+<li><p>loads of helpful callbacks for listening, core maintained.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> keycloak = Keycloak();
+keycloak.init().success(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">authenticated</span>) </span>{
+  alert(authenticated ? <span class="hljs-string">'authenticated'</span> : <span class="hljs-string">'not authenticated'</span>);
+}).error(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  alert(<span class="hljs-string">'failed to initialize'</span>);
+});</code></pre>
+</li>
+<li><p>Example: it practically is <a href="https://github.com/mobilizingcs/navbar/blob/master/views/login.js#L116">this simple</a>.</p>
+</li>
 </ul>
 </section>
   </div>
@@ -479,11 +476,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>Now we&#39;re scraping the bottom of the barrel.</li>
 <li>If you <em>really</em>, <em>really</em> can&#39;t integrate your app, you can use their security proxy.</li>
 <li>Injects customizable headers and offers a URL permit/deny patterns.</li>
-<li>Example: Would you even guess it? I did this to RStudio(r)!</li>
+<li>Example: Would you even guess it? I did this to the RStudio(r) IDE!</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden author-slide" id="slide-10">
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="you-can-finally-stop-listening-to-me-">You can finally stop listening to me!</h3>
+<ul>
+<li>Anything you&#39;d like to hear more about?<ul>
+<li>Bolting keycloak to a legacy java app?</li>
+<li>Why is this a good idea for self-host OSS?</li>
+<li>The horribleness of that PAM hack.</li>
+</ul>
+</li>
+<li>Questions?</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden author-slide" id="slide-11">
     <section class="slide-content"><div class="author">
   <h1 class="name">Steve Nolen</h1>
     <h3 class="github">
