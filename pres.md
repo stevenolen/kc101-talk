@@ -90,7 +90,7 @@ progress: true
   * Integrates well with js lib:
     * Client: `keycloak.js` manages user's session, appends `Auth` header to server requests
     * Server: decodes token, verifies signer, ensures non-expiry, uses user info in payload
-  * Example: Our ancient java server, still [gets it](https://github.com/ohmage/server/blob/master/src/org/ohmage/service/KeycloakServices.java#L56-L90).
+  * Example: Our ancient java server still [gets it](https://github.com/ohmage/server/blob/master/src/org/ohmage/service/KeycloakServices.java#L56-L90).
 
 --
 
