@@ -2,11 +2,9 @@ version: '2'
 services:
   rstudio:
     build: rstudio/
-    networks:
-      - inside
   proxy:
     image: stevenolen/keycloak-proxy
     volumes:
       - ./proxy.json:/proxy.json
     ports:
-      - 8080:8080
+      - 8081:8080
