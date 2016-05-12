@@ -96,7 +96,7 @@ progress: true
 
 ### Integration Option: oauth2/openid-connect
 
-  * So, with all that fun you'd still prefer to just use oauth2? :)
+  * So, with all that fun you'd still prefer just to use oauth2? :)
   * Standard openid-connect endpoints: `authorization`, `token`, `userinfo`, `end_session`
   * Example: A php integration for dokuwiki in a [handful of lines of code](https://github.com/stevenolen/dokuwiki-plugin-oauth)
 
@@ -106,15 +106,15 @@ progress: true
 
   * Now we're scraping the bottom of the barrel.
   * If you *really*, *really* can't integrate your app, you can use their security proxy.
-  * Injects customizable headers and offers a URL permit/deny patterns.
-  * Example: Would you even guess it? I did this to the RStudio(r) IDE!
+  * Injects customizable headers and offers URL permit/deny patterns.
+  * Example: I did this to the RStudio(r) IDE!
 
 --
 
-### You can finally stop listening to me!
+### Thanks!
 
   * Anything you'd like to hear more about?
     * Bolting keycloak to a legacy java app?
     * Why is this a good idea for self-host OSS?
-    * The horribleness of that PAM hack.
-  * Questions?
+    * The horribleness of that PAM hack?
+  * Other questions?
